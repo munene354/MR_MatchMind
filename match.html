@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match Analysis | M.R MatchMind</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:Arial,sans-serif;
+background:#06101d;
+color:#f4f8ff;
+line-height:1.5;
+}
+
+a{text-decoration:none;color:inherit}
+
+header{
+background:#071522;
+border-bottom:1px solid #1c3550;
+padding:15px 20px;
+}
+
+.brand{
+font-size:21px;
+font-weight:bold;
+}
+
+.brand span{color:#1687ff}
+
+.container{
+max-width:850px;
+margin:auto;
+padding:25px 18px 50px;
+}
+
+.back{
+display:inline-block;
+color:#79bfff;
+margin-bottom:25px;
+}
+
+.card{
+background:#0c1a2b;
+border:1px solid #1c3550;
+border-radius:16px;
+padding:22px;
+margin-bottom:18px;
+}
+
+.league{
+color:#91a5bd;
+font-size:13px;
+text-align:center;
+}
+
+.match{
+text-align:center;
+padding:25px 5px;
+}
+
+.teams{
+font-size:28px;
+font-weight:bold;
+margin:12px 0;
+}
+
+.vs{
+color:#1687ff;
+font-size:14px;
+margin:0 8px;
+}
+
+.kickoff{
+color:#91a5bd;
+font-size:14px;
+}
+
+.title{
+font-size:20px;
+margin-bottom:18px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+}
+
+.stat{
+background:#101f32;
+border:1px solid #1c3550;
+border-radius:10px;
+padding:15px;
+}
+
+.stat small{
+display:block;
+color:#91a5bd;
+margin-bottom:5px;
+}
+
+.stat strong{
+font-size:20px;
+}
+
+.forecast{
+border:1px solid #1687ff;
+background:rgba(22,135,255,.08);
+text-align:center;
+}
+
+.forecast-label{
+color:#91a5bd;
+font-size:13px;
+}
+
+.forecast-value{
+font-size:24px;
+font-weight:bold;
+color:#54a9ff;
+margin:6px 0;
+}
+
+.confidence{
+color:#20d99a;
+font-weight:bold;
+}
+
+.form{
+display:flex;
+gap:7px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.form span{
+width:32px;
+height:32px;
+border-radius:6px;
+display:grid;
+place-items:center;
+background:#172a40;
+font-weight:bold;
+font-size:12px;
+}
+
+.analysis{
+color:#b4c5d9;
+}
+
+.note{
+font-size:12px;
+color:#71869e;
+margin-top:20px;
+text-align:center;
+}
+
+footer{
+text-align:center;
+border-top:1px solid #1c3550;
+padding:25px;
+color:#71869e;
+font-size:12px;
+}
+
+@media(max-width:500px){
+.teams{font-size:23px}
+.stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="brand">⚽ M.R <span>MatchMind</span></div>
+</header>
+
+<main class="container">
+
+<a href="index.html" class="back">← Back to MatchMind</a>
+
+<div class="card">
+
+<div class="league">PREMIER LEAGUE</div>
+
+<div class="match">
+
+<div class="teams">
+Arsenal <span class="vs">VS</span> Chelsea
+</div>
+
+<div class="kickoff">
+Today • 15:00
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="title">📊 Match Statistics</h2>
+
+<div class="stats">
+
+<div class="stat">
+<small>Arsenal Recent Form</small>
+<strong>W W D W W</strong>
+</div>
+
+<div class="stat">
+<small>Chelsea Recent Form</small>
+<strong>W D W L W</strong>
+</div>
+
+<div class="stat">
+<small>Arsenal Home Form</small>
+<strong>Strong</strong>
+</div>
+
+<div class="stat">
+<small>Chelsea Away Form</small>
+<strong>Mixed</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="title">🧠 M.R MatchMind Forecast</h2>
+
+<div class="forecast">
+
+<div class="forecast-label">
+Primary Forecast
+</div>
+
+<div class="forecast-value">
+Home Win
+</div>
+
+<div class="confidence">
+Confidence estimate: 68%
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="title">📈 Recent Form</h2>
+
+<p>Arsenal</p>
+
+<div class="form">
+<span>W</span>
+<span>W</span>
+<span>D</span>
+<span>W</span>
+<span>W</span>
+</div>
+
+<br>
+
+<p>Chelsea</p>
+
+<div class="form">
+<span>W</span>
+<span>D</span>
+<span>W</span>
+<span>L</span>
+<span>W</span>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="title">📝 Match Analysis</h2>
+
+<p class="analysis">
+This section will contain the full M.R MatchMind analysis
+based on verified team statistics, recent form, home and
+away performance, goals data, player availability and other
+relevant factors.
+</p>
+
+<p class="note">
+Forecasts are estimates, not guarantees. Results will be
+recorded transparently after the match.
+</p>
+
+</div>
+
+</main>
+
+<footer>
+© 2026 M.R MatchMind — See the match differently.
+</footer>
+
+</body>
+</html>
