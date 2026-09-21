@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>M.R MatchMind</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: white;
+    }
+
+    header {
+      background: #101a2e;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #26344f;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .tagline {
+      margin-top: 6px;
+      color: #aeb9cc;
+      font-size: 14px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: #0e1728;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #aeb9cc;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #1d72f3;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section-title {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .matches {
+      display: grid;
+      gap: 15px;
+    }
+
+    .match-card {
+      background: #141f33;
+      border: 1px solid #26344f;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .league {
+      color: #8fa3c2;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .teams {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .prediction {
+      color: #63a4ff;
+      font-weight: bold;
+    }
+
+    .confidence {
+      margin-top: 8px;
+      color: #b8c4d8;
+      font-size: 14px;
+    }
+
+    .premium {
+      margin-top: 30px;
+    }
+
+    .premium-card {
+      background: #191725;
+      border: 1px solid #51456d;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .lock {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 25px;
+      text-align: center;
+      color: #7f8ba0;
+      border-top: 1px solid #26344f;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">⚽ M.R MatchMind</div>
+    <div class="tagline">See the match differently.</div>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#free">Free Picks</a>
+    <a href="#premium">Premium</a>
+    <a href="#record">Track Record</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Today's Football Predictions</h1>
+    <p>Data-driven analysis. Transparent results. No guaranteed wins.</p>
+    <a class="btn" href="#free">View Today's Picks</a>
+  </section>
+
+  <section class="section" id="free">
+    <h2 class="section-title">🆓 Free Picks — 10 Matches</h2>
+
+    <div class="matches">
+
+      <div class="match-card">
+        <div class="league">Premier League</div>
+        <div class="teams">Arsenal vs Chelsea</div>
+        <div class="prediction">Prediction: Home Win</div>
+        <div class="confidence">Confidence: 68%</div>
+      </div>
+
+      <div class="match-card">
+        <div class="league">La Liga</div>
+        <div class="teams">Barcelona vs Sevilla</div>
+        <div class="prediction">Prediction: Home Win</div>
+        <div class="confidence">Confidence: 72%</div>
+      </div>
+
+      <div class="match-card">
+        <div class="league">Serie A</div>
+        <div class="teams">Inter vs Torino</div>
+        <div class="prediction">Prediction: Home Win</div>
+        <div class="confidence">Confidence: 70%</div>
+      </div>
+
+      <div class="match-card">
+        <div class="league">Bundesliga</div>
+        <div class="teams">Bayern vs Mainz</div>
+        <div class="prediction">Prediction: Home Win</div>
+        <div class="confidence">Confidence: 75%</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section premium" id="premium">
+
+    <h2 class="section-title">💎 Premium Picks — 5 Matches</h2>
+
+    <div class="premium-card">
+      <div class="lock">🔒</div>
+      <h3>Premium Analysis</h3>
+      <p style="margin: 12px 0; color:#aeb9cc;">
+        Unlock today's additional 5 selections and detailed analysis.
+      </p>
+
+      <a class="btn" href="#">Unlock Premium</a>
+    </div>
+
+  </section>
+
+  <section class="section" id="record">
+
+    <h2 class="section-title">📊 Transparent Track Record</h2>
+
+    <div class="match-card">
+      <p>Today's Record: <strong>— / 15</strong></p>
+      <p style="margin-top:8px;">7-Day Accuracy: <strong>—</strong></p>
+      <p style="margin-top:8px;">30-Day Accuracy: <strong>—</strong></p>
+      <p style="margin-top:8px;">All-Time Accuracy: <strong>—</strong></p>
+    </div>
+
+  </section>
+
+  <footer>
+    M.R MatchMind © 2026<br><br>
+    Predictions are analysis, not guarantees.
+  </footer>
+
+</body>
+</html>
