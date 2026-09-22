@@ -801,9 +801,10 @@ document.querySelectorAll('.match').forEach(function(match) {
   match.style.cursor = 'pointer';
 
   match.addEventListener('click', function() {
-    window.location.href = 'match.html';
+    const teams = match.querySelector('.teams').innerText;
+    window.location.href = 'match.html?match=' + encodeURIComponent(teams);
   });
 });
-  </script>
+</script>
 </body>
 </html>
