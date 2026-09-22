@@ -796,5 +796,14 @@ footer {
 
 </footer>
 
+<script>
+document.querySelectorAll('.match').forEach(function(match) {
+  match.style.cursor = 'pointer';
+
+  match.addEventListener('click', function() {
+    window.location.href = 'match.html';
+  });
+});
+  </script>
 </body>
 </html>
