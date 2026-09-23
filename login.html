@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M.R MatchMind | Login</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:#06101d;
+  color:#f4f8ff;
+  display:flex;
+  flex-direction:column;
+}
+
+header{
+  padding:18px 20px;
+  border-bottom:1px solid #1c3550;
+  background:#071522;
+}
+
+.brand{
+  max-width:850px;
+  margin:auto;
+  font-size:21px;
+  font-weight:bold;
+}
+
+.brand span{
+  color:#1687ff;
+}
+
+.container{
+  width:100%;
+  max-width:440px;
+  margin:auto;
+  padding:30px 20px;
+}
+
+.card{
+  background:#0c1a2b;
+  border:1px solid #1c3550;
+  border-radius:16px;
+  padding:28px 22px;
+}
+
+.logo{
+  text-align:center;
+  font-size:38px;
+  margin-bottom:8px;
+}
+
+h1{
+  text-align:center;
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#91a5bd;
+  font-size:13px;
+  margin-bottom:25px;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  margin-bottom:22px;
+  background:#101f32;
+  border-radius:8px;
+  padding:4px;
+}
+
+.tab{
+  border:0;
+  background:transparent;
+  color:#91a5bd;
+  padding:10px;
+  border-radius:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#1687ff;
+  color:white;
+}
+
+label{
+  display:block;
+  color:#b9c9da;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  margin-bottom:16px;
+  border-radius:8px;
+  border:1px solid #29435d;
+  background:#071522;
+  color:white;
+  outline:none;
+}
+
+input:focus{
+  border-color:#1687ff;
+}
+
+.submit{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:8px;
+  background:#1687ff;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+}
+
+.message{
+  display:none;
+  margin-top:15px;
+  padding:10px;
+  border-radius:7px;
+  background:#101f32;
+  color:#91a5bd;
+  font-size:12px;
+  text-align:center;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:20px;
+  color:#79bfff;
+  font-size:13px;
+}
+
+.pro-note{
+  margin-top:20px;
+  padding:14px;
+  border:1px solid #765d19;
+  border-radius:9px;
+  background:#17140b;
+  color:#c9bd94;
+  font-size:12px;
+  text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    ⚽ M.R <span>MatchMind</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="card">
+
+    <div class="logo">🧠</div>
+
+    <h1>Welcome to MatchMind</h1>
+
+    <p class="subtitle">
+      Sign in or create your M.R MatchMind account.
+    </p>
+
+    <div class="tabs">
+
+      <button class="tab active" id="loginTab">
+        Login
+      </button>
+
+      <button class="tab" id="signupTab">
+        Sign Up
+      </button>
+
+    </div>
+
+    <form id="authForm">
+
+      <label>Email address</label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="you@example.com"
+        required
+      >
+
+      <label>Password</label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        required
+      >
+
+      <button class="submit" type="submit" id="submitButton">
+        Login
+      </button>
+
+    </form>
+
+    <div class="message" id="message"></div>
+
+    <div class="pro-note">
+      🔒 Pro subscriptions will be connected after
+      the account system and payment infrastructure
+      are securely configured.
+    </div>
+
+    <a href="index.html" class="back">
+      ← Back to MatchMind
+    </a>
+
+  </div>
+
+</main>
+
+<script>
+
+let mode = "login";
+
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+const submitButton = document.getElementById("submitButton");
+const authForm = document.getElementById("authForm");
+const message = document.getElementById("message");
+
+loginTab.onclick = function(){
+
+  mode = "login";
+
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+
+  submitButton.textContent = "Login";
+
+};
+
+signupTab.onclick = function(){
+
+  mode = "signup";
+
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+
+  submitButton.textContent = "Create Account";
+
+};
+
+authForm.onsubmit = function(event){
+
+  event.preventDefault();
+
+  message.style.display = "block";
+
+  if(mode === "login"){
+
+    message.textContent =
+      "Account authentication will be connected in the next stage.";
+
+  }else{
+
+    message.textContent =
+      "Account registration will be connected in the next stage.";
+
+  }
+
+};
+
+</script>
+
+</body>
+  </html>
