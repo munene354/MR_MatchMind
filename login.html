@@ -236,13 +236,23 @@ input:focus{
   </div>
 
 </main>
+<script 
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co/rest/v1/";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2b3RwdWpia2FpZ3N6Z29jc3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNzcwNTMsImV4cCI6MjEwNTc1MzA1M30.T7PZ8DpqXl1l5cVurEyNhapC_Fi-mLFI04LMo0NnA_0";
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+</script>
 
 <script>
 let mode = "login";
 
-const loginTab = document.getElementById("loginTab");
-const signupTab = document.getElementById("signupTab");
-const submitButton = document.getElementById("submitButton");
+const loginTab = ...
 const authForm = document.getElementById("authForm");
 const message = document.getElementById("message");
 
@@ -307,18 +317,6 @@ authForm.onsubmit = async function (event) {
     }, 1000);
   }
 };
-</script>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co/rest/v1/";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2b3RwdWpia2FpZ3N6Z29jc3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNzcwNTMsImV4cCI6MjEwNTc1MzA1M30.T7PZ8DpqXl1l5cVurEyNhapC_Fi-mLFI04LMo0NnA_0";
-
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
 </script>
 </body>
   </html>
