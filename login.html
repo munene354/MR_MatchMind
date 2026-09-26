@@ -255,63 +255,38 @@ input:focus {
 
 <script>
 
-/* =========================================
-   M.R MATCHMIND - SUPABASE CONFIGURATION
-   ========================================= */
-
 const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co/rest/v1/";
-
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2b3RwdWpia2FpZ3N6Z29jc3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNzcwNTMsImV4cCI6MjEwNTc1MzA1M30.T7PZ8DpqXl1l5cVurEyNhapC_Fi-mLFI04LMo0NnA_0";
 
+let supabaseClient = null;
 
-/* Create Supabase client */
-
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
-
-
-/* =========================================
-   ELEMENTS
-   ========================================= */
+try {
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+} catch (error) {
+  console.error("Supabase initialization error:", error);
+}
 
 const loginTab = document.getElementById("loginTab");
-
 const signupTab = document.getElementById("signupTab");
-
 const authForm = document.getElementById("authForm");
-
 const submitButton = document.getElementById("submitButton");
-
 const message = document.getElementById("message");
 
 let mode = "login";
 
-
-/* =========================================
-   SHOW MESSAGE
-   ========================================= */
-
 function showMessage(text) {
-
   message.style.display = "block";
-
   message.textContent = text;
-
 }
-
-
-/* =========================================
-   LOGIN TAB
-   ========================================= */
 
 loginTab.addEventListener("click", function() {
 
   mode = "login";
 
   loginTab.classList.add("active");
-
   signupTab.classList.remove("active");
 
   submitButton.textContent = "Login";
@@ -320,17 +295,11 @@ loginTab.addEventListener("click", function() {
 
 });
 
-
-/* =========================================
-   SIGN UP TAB
-   ========================================= */
-
 signupTab.addEventListener("click", function() {
 
   mode = "signup";
 
   signupTab.classList.add("active");
-
   loginTab.classList.remove("active");
 
   submitButton.textContent = "Create Account";
@@ -339,114 +308,79 @@ signupTab.addEventListener("click", function() {
 
 });
 
-
-/* =========================================
-   LOGIN / SIGN UP
-   ========================================= */
-
 authForm.addEventListener("submit", async function(event) {
 
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
-
   const password = document.getElementById("password").value;
 
-
-  if (!email || !password) {
-
-    showMessage("Please enter your email and password.");
-
+  if (!supabaseClient) {
+    showMessage("Supabase connection is not configured correctly.");
     return;
-
   }
 
-
   submitButton.disabled = true;
-
   submitButton.textContent = "Please wait...";
 
-  message.style.display = "none";
+  try {
 
+    if (mode === "signup") {
 
-  /* =====================================
-     SIGN UP
-     ===================================== */
+      const { error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+      });
 
-  if (mode === "signup") {
-
-    const { data, error } = await supabase.auth.signUp({
-
-      email: email,
-
-      password: password
-
-    });
-
-
-    if (error) {
-
-      showMessage(error.message);
+      if (error) {
+        showMessage(error.message);
+      } else {
+        showMessage(
+          "Account created! Check your email if confirmation is required."
+        );
+      }
 
       submitButton.disabled = false;
-
       submitButton.textContent = "Create Account";
 
-      return;
+    } else {
+
+      const { error } =
+        await supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+      if (error) {
+
+        showMessage(error.message);
+
+        submitButton.disabled = false;
+        submitButton.textContent = "Login";
+
+        return;
+      }
+
+      showMessage("Login successful!");
+
+      setTimeout(function() {
+        window.location.href = "index.html";
+      }, 800);
 
     }
 
+  } catch (error) {
 
-    showMessage(
-      "Account created successfully! Check your email if confirmation is required."
-    );
-
-    submitButton.disabled = false;
-
-    submitButton.textContent = "Create Account";
-
-    return;
-
-  }
-
-
-  /* =====================================
-     LOGIN
-     ===================================== */
-
-  const { data, error } =
-    await supabase.auth.signInWithPassword({
-
-      email: email,
-
-      password: password
-
-    });
-
-
-  if (error) {
-
-    showMessage(error.message);
+    showMessage("Something went wrong. Please try again.");
 
     submitButton.disabled = false;
 
-    submitButton.textContent = "Login";
+    submitButton.textContent =
+      mode === "signup" ? "Create Account" : "Login";
 
-    return;
+    console.error(error);
 
   }
-
-
-  showMessage("Login successful!");
-
-
-  /* Send user back to MatchMind */
-
-  setTimeout(function() {
-
-    window.location.href = "index.html";
-
-  }, 800);
 
 });
 
