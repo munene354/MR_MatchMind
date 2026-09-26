@@ -4,324 +4,453 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>M.R MatchMind | Login</title>
+<title>M.R MatchMind - Login</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  min-height:100vh;
-  font-family:Arial,sans-serif;
-  background:#06101d;
-  color:#f4f8ff;
-  display:flex;
-  flex-direction:column;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #06111d;
+  color: #f5f7fa;
 }
 
-header{
-  padding:18px 20px;
-  border-bottom:1px solid #1c3550;
-  background:#071522;
+header {
+  height: 86px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  background: #071522;
+  border-bottom: 1px solid #1b3045;
 }
 
-.brand{
-  max-width:850px;
-  margin:auto;
-  font-size:21px;
-  font-weight:bold;
+.logo {
+  font-size: 28px;
+  font-weight: bold;
 }
 
-.brand span{
-  color:#1687ff;
+.logo span {
+  color: #168cff;
 }
 
-.container{
-  width:100%;
-  max-width:440px;
-  margin:auto;
-  padding:30px 20px;
+.container {
+  max-width: 570px;
+  margin: 245px auto 60px;
+  padding: 0 20px;
 }
 
-.card{
-  background:#0c1a2b;
-  border:1px solid #1c3550;
-  border-radius:16px;
-  padding:28px 22px;
+.card {
+  background: #0d1d2f;
+  border: 1px solid #1b354f;
+  border-radius: 22px;
+  padding: 38px 30px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
 }
 
-.logo{
-  text-align:center;
-  font-size:38px;
-  margin-bottom:8px;
+.brain {
+  text-align: center;
+  font-size: 55px;
+  margin-bottom: 12px;
 }
 
-h1{
-  text-align:center;
-  font-size:25px;
-  margin-bottom:7px;
+h1 {
+  text-align: center;
+  margin: 0 0 10px;
+  font-size: 34px;
 }
 
-.subtitle{
-  text-align:center;
-  color:#91a5bd;
-  font-size:13px;
-  margin-bottom:25px;
+.subtitle {
+  text-align: center;
+  color: #8fa1b5;
+  font-size: 17px;
+  margin-bottom: 35px;
 }
 
-.tabs{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  margin-bottom:22px;
-  background:#101f32;
-  border-radius:8px;
-  padding:4px;
+.tabs {
+  display: flex;
+  background: #0a1a2b;
+  border-radius: 12px;
+  padding: 5px;
+  margin-bottom: 30px;
 }
 
-.tab{
-  border:0;
-  background:transparent;
-  color:#91a5bd;
-  padding:10px;
-  border-radius:6px;
-  font-weight:bold;
-  cursor:pointer;
+.tab {
+  flex: 1;
+  padding: 16px;
+  border: none;
+  background: transparent;
+  color: #91a3b7;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 9px;
+  cursor: pointer;
 }
 
-.tab.active{
-  background:#1687ff;
-  color:white;
+.tab.active {
+  background: #168cff;
+  color: white;
 }
 
-label{
-  display:block;
-  color:#b9c9da;
-  font-size:12px;
-  margin-bottom:7px;
+label {
+  display: block;
+  margin-bottom: 9px;
+  color: #aebdcb;
+  font-size: 16px;
 }
 
-input{
-  width:100%;
-  padding:13px;
-  margin-bottom:16px;
-  border-radius:8px;
-  border:1px solid #29435d;
-  background:#071522;
-  color:white;
-  outline:none;
+input {
+  width: 100%;
+  padding: 17px;
+  margin-bottom: 22px;
+  border-radius: 11px;
+  border: 1px solid #29445e;
+  background: #071522;
+  color: white;
+  font-size: 16px;
+  outline: none;
 }
 
-input:focus{
-  border-color:#1687ff;
+input:focus {
+  border-color: #168cff;
 }
 
-.submit{
-  width:100%;
-  border:0;
-  padding:13px;
-  border-radius:8px;
-  background:#1687ff;
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-  cursor:pointer;
+.submit {
+  width: 100%;
+  padding: 17px;
+  border: none;
+  border-radius: 11px;
+  background: #168cff;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.message{
-  display:none;
-  margin-top:15px;
-  padding:10px;
-  border-radius:7px;
-  background:#101f32;
-  color:#91a5bd;
-  font-size:12px;
-  text-align:center;
+.submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
 }
 
-.back{
-  display:block;
-  text-align:center;
-  margin-top:20px;
-  color:#79bfff;
-  font-size:13px;
+.message {
+  display: none;
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 9px;
+  text-align: center;
+  background: #17283a;
+  color: #dce7f2;
 }
 
-.pro-note{
-  margin-top:20px;
-  padding:14px;
-  border:1px solid #765d19;
-  border-radius:9px;
-  background:#17140b;
-  color:#c9bd94;
-  font-size:12px;
-  text-align:center;
+.pro-note {
+  margin-top: 28px;
+  padding: 17px;
+  border: 1px solid #705b16;
+  border-radius: 11px;
+  background: #17170e;
+  color: #c9c09a;
+  text-align: center;
 }
 
+.back {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  color: #72b8ff;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .container {
+    margin-top: 180px;
+  }
+
+  .card {
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="brand">
-    ⚽ M.R <span>MatchMind</span>
-  </div>
+  <div class="logo">⚽ M.R <span>MatchMind</span></div>
 </header>
 
-<main class="container">
+<div class="container">
 
   <div class="card">
 
-    <div class="logo">🧠</div>
+    <div class="brain">🧠</div>
 
     <h1>Welcome to MatchMind</h1>
 
-    <p class="subtitle">
+    <div class="subtitle">
       Sign in or create your M.R MatchMind account.
-    </p>
+    </div>
 
     <div class="tabs">
-
-      <button class="tab active" id="loginTab">
-        Login
-      </button>
-
-      <button class="tab" id="signupTab">
-        Sign Up
-      </button>
-
+      <button id="loginTab" class="tab active">Login</button>
+      <button id="signupTab" class="tab">Sign Up</button>
     </div>
 
     <form id="authForm">
 
-      <label>Email address</label>
+      <label for="email">Email address</label>
 
       <input
-        type="email"
         id="email"
+        type="email"
         placeholder="you@example.com"
         required
       >
 
-      <label>Password</label>
+      <label for="password">Password</label>
 
       <input
-        type="password"
         id="password"
+        type="password"
         placeholder="Enter password"
         required
       >
 
-      <button class="submit" type="submit" id="submitButton">
+      <button id="submitButton" class="submit" type="submit">
         Login
       </button>
 
     </form>
 
-    <div class="message" id="message"></div>
+    <div id="message" class="message"></div>
 
     <div class="pro-note">
-      🔒 Pro subscriptions will be connected after
-      the account system and payment infrastructure
-      are securely configured.
+      🔒 Pro subscriptions will be connected after the account
+      system and payment infrastructure are securely configured.
     </div>
 
-    <a href="index.html" class="back">
+    <a class="back" href="index.html">
       ← Back to MatchMind
     </a>
 
   </div>
 
-</main>
-<script 
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</div>
+
+<!-- Supabase library -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
+/* =========================================
+   M.R MATCHMIND - SUPABASE CONFIGURATION
+   ========================================= */
+
 const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co/rest/v1/";
+
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ2b3RwdWpia2FpZ3N6Z29jc3B5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNzcwNTMsImV4cCI6MjEwNTc1MzA1M30.T7PZ8DpqXl1l5cVurEyNhapC_Fi-mLFI04LMo0NnA_0";
+
+
+/* Create Supabase client */
 
 const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
-</script>
 
-<script>
-let mode = "login";
 
-const loginTab = ...
+/* =========================================
+   ELEMENTS
+   ========================================= */
+
+const loginTab = document.getElementById("loginTab");
+
+const signupTab = document.getElementById("signupTab");
+
 const authForm = document.getElementById("authForm");
+
+const submitButton = document.getElementById("submitButton");
+
 const message = document.getElementById("message");
 
-loginTab.onclick = function () {
+let mode = "login";
+
+
+/* =========================================
+   SHOW MESSAGE
+   ========================================= */
+
+function showMessage(text) {
+
+  message.style.display = "block";
+
+  message.textContent = text;
+
+}
+
+
+/* =========================================
+   LOGIN TAB
+   ========================================= */
+
+loginTab.addEventListener("click", function() {
+
   mode = "login";
 
   loginTab.classList.add("active");
+
   signupTab.classList.remove("active");
 
   submitButton.textContent = "Login";
-};
 
-const loginTab = document.getElementById("loginTab");
-const signupTab = document.getElementById("signupTab");
-const submitButton = document.getElementById("submitButton");
-const authForm = document.getElementById("authForm");
-const message = document.getElementById("message");
-  signupTab.onclick = function () {
+  message.style.display = "none";
+
+});
+
+
+/* =========================================
+   SIGN UP TAB
+   ========================================= */
+
+signupTab.addEventListener("click", function() {
+
   mode = "signup";
 
   signupTab.classList.add("active");
+
   loginTab.classList.remove("active");
 
   submitButton.textContent = "Create Account";
-};
 
-authForm.onsubmit = async function (event) {
+  message.style.display = "none";
+
+});
+
+
+/* =========================================
+   LOGIN / SIGN UP
+   ========================================= */
+
+authForm.addEventListener("submit", async function(event) {
+
   event.preventDefault();
 
   const email = document.getElementById("email").value.trim();
+
   const password = document.getElementById("password").value;
 
-  message.style.display = "block";
-  message.textContent = "Please wait...";
+
+  if (!email || !password) {
+
+    showMessage("Please enter your email and password.");
+
+    return;
+
+  }
+
+
+  submitButton.disabled = true;
+
+  submitButton.textContent = "Please wait...";
+
+  message.style.display = "none";
+
+
+  /* =====================================
+     SIGN UP
+     ===================================== */
 
   if (mode === "signup") {
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
+
       email: email,
+
       password: password
+
     });
 
-    if (error) {
-      message.textContent = error.message;
-      return;
-    }
-
-    message.textContent =
-      "Account created! Check your email if confirmation is required.";
-
-  } else {
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    });
 
     if (error) {
-      message.textContent = error.message;
+
+      showMessage(error.message);
+
+      submitButton.disabled = false;
+
+      submitButton.textContent = "Create Account";
+
       return;
+
     }
 
-    message.textContent = "Login successful!";
 
-    setTimeout(function () {
-      window.location.href = "index.html";
-    }, 1000);
+    showMessage(
+      "Account created successfully! Check your email if confirmation is required."
+    );
+
+    submitButton.disabled = false;
+
+    submitButton.textContent = "Create Account";
+
+    return;
+
   }
-};
+
+
+  /* =====================================
+     LOGIN
+     ===================================== */
+
+  const { data, error } =
+    await supabase.auth.signInWithPassword({
+
+      email: email,
+
+      password: password
+
+    });
+
+
+  if (error) {
+
+    showMessage(error.message);
+
+    submitButton.disabled = false;
+
+    submitButton.textContent = "Login";
+
+    return;
+
+  }
+
+
+  showMessage("Login successful!");
+
+
+  /* Send user back to MatchMind */
+
+  setTimeout(function() {
+
+    window.location.href = "index.html";
+
+  }, 800);
+
+});
+
 </script>
+
 </body>
-  </html>
+</html>
