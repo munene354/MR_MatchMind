@@ -265,7 +265,12 @@ loginTab.onclick = function () {
   submitButton.textContent = "Login";
 };
 
-signupTab.onclick = function () {
+const loginTab = document.getElementById("loginTab");
+const signupTab = document.getElementById("signupTab");
+const submitButton = document.getElementById("submitButton");
+const authForm = document.getElementById("authForm");
+const message = document.getElementById("message");
+  signupTab.onclick = function () {
   mode = "signup";
 
   signupTab.classList.add("active");
