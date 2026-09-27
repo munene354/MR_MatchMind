@@ -887,39 +887,33 @@ document.querySelectorAll('.match').forEach(function(match) {
 </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_uG2muoZadTbcYXoDNk6usw_Fu0LqEWM";
 
-const supabase = window.supabase.createClient(
+const supabaseAuth = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
 
-async function updateLoginStatus() {
-  const { data: { session } } = await supabase.auth.getSession();
+async function checkLogin() {
+  const { data: { session } } =
+    await supabaseAuth.auth.getSession();
 
-  const navLinks = document.querySelector(".nav-links");
+  const loginLink =
+    document.querySelector('a[href="login.html"]');
 
-  if (!navLinks) return;
-
-  const loginLink = navLinks.querySelector('a[href="login.html"]');
-  const accountLink = navLinks.querySelector('a[href="account.html"]');
+  if (!loginLink) return;
 
   if (session) {
-    if (loginLink) loginLink.style.display = "none";
-
-    if (accountLink) {
-      accountLink.textContent = "Account";
-      accountLink.style.display = "inline-block";
-    }
-  } else {
-    if (loginLink) loginLink.style.display = "inline-block";
-    if (accountLink) accountLink.style.display = "none";
+    loginLink.textContent = "Account";
+    loginLink.href = "login.html";
   }
 }
 
-updateLoginStatus();
+checkLogin();
 </script>
 </body>
 </html>
