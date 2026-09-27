@@ -520,6 +520,7 @@ footer {
       <a href="#about">About</a>
       <a href="login.html">Login</a>
       <a href="account.html">Account</a>
+      style="display:none;">Account</a>
     </nav>
 
   </div>
@@ -884,9 +885,6 @@ document.querySelectorAll('.match').forEach(function(match) {
     window.location.href = 'match.html?match=' + encodeURIComponent(teams);
   });
 });
-</script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -898,22 +896,29 @@ const supabaseAuth = window.supabase.createClient(
   SUPABASE_ANON_KEY
 );
 
-async function checkLogin() {
+async function updateNavigation() {
+
   const { data: { session } } =
     await supabaseAuth.auth.getSession();
 
   const loginLink =
-    document.querySelector('a[href="login.html"]');
+    document.getElementById("loginLink");
 
-  if (!loginLink) return;
+  const accountLink =
+    document.getElementById("accountLink");
+
+  if (!loginLink || !accountLink) return;
 
   if (session) {
-    loginLink.textContent = "Account";
-    loginLink.href = "login.html";
+    loginLink.style.display = "none";
+    accountLink.style.display = "inline-block";
+  } else {
+    loginLink.style.display = "inline-block";
+    accountLink.style.display = "none";
   }
 }
 
-checkLogin();
+updateNavigation();
 </script>
 </body>
 </html>
