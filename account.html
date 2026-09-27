@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>M.R MatchMind - Account</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #06111d;
+  color: #f5f7fa;
+}
+
+header {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+  background: #071522;
+  border-bottom: 1px solid #1b3045;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #168cff;
+}
+
+.container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.card {
+  background: #0d1d2f;
+  border: 1px solid #1b354f;
+  border-radius: 18px;
+  padding: 30px;
+}
+
+.icon {
+  text-align: center;
+  font-size: 50px;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.subtitle {
+  text-align: center;
+  color: #8fa1b5;
+  margin-bottom: 30px;
+}
+
+.info {
+  background: #091827;
+  border: 1px solid #1d344b;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 15px;
+}
+
+.label {
+  color: #8195aa;
+  font-size: 13px;
+  margin-bottom: 7px;
+}
+
+.value {
+  font-size: 16px;
+  word-break: break-word;
+}
+
+.plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge {
+  background: #26384a;
+  color: #d7e2ed;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.pro {
+  border-color: #6b5718;
+  background: #17160d;
+}
+
+.pro .badge {
+  background: #8b6d16;
+  color: white;
+}
+
+button {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  border-radius: 9px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.logout {
+  background: #c0392b;
+  color: white;
+}
+
+.back {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #72b8ff;
+}
+
+#loading {
+  text-align: center;
+  color: #91a5b8;
+}
+
+#error {
+  display: none;
+  text-align: center;
+  color: #ff8d8d;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    ⚽ M.R <span>MatchMind</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="icon">👤</div>
+
+    <h1>My Account</h1>
+
+    <div class="subtitle">
+      Your M.R MatchMind account
+    </div>
+
+    <div id="loading">
+      Loading account...
+    </div>
+
+    <div id="error">
+      You are not logged in.
+    </div>
+
+    <div id="accountContent" style="display:none;">
+
+      <div class="info">
+
+        <div class="label">
+          EMAIL
+        </div>
+
+        <div class="value" id="userEmail">
+          —
+        </div>
+
+      </div>
+
+      <div class="info plan">
+
+        <div>
+          <div class="label">
+            CURRENT PLAN
+          </div>
+
+          <div class="value">
+            Free
+          </div>
+        </div>
+
+        <div class="badge">
+          FREE
+        </div>
+
+      </div>
+
+      <div class="info">
+
+        <div class="label">
+          FREE ANALYSES
+        </div>
+
+        <div class="value">
+          10 daily analyses
+        </div>
+
+      </div>
+
+      <div class="info pro">
+
+        <div class="plan">
+
+          <div>
+            <div class="label">
+              PREMIUM
+            </div>
+
+            <div class="value">
+              Unlock 5 Pro analyses
+            </div>
+          </div>
+
+          <div class="badge">
+            PRO
+          </div>
+
+        </div>
+
+      </div>
+
+      <button class="logout" id="logoutButton">
+        Logout
+      </button>
+
+      <a href="index.html" class="back">
+        ← Back to MatchMind
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL = "https://vvotpujbkaigszgocspy.supabase.co";
+
+const SUPABASE_ANON_KEY = "sb_publishable_uG2muoZadTbcYXoDNk6usw_Fu0LqEWM";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+async function loadAccount() {
+
+  const {
+    data: { user }
+  } = await supabaseClient.auth.getUser();
+
+
+  document.getElementById("loading").style.display = "none";
+
+
+  if (!user) {
+
+    document.getElementById("error").style.display = "block";
+
+    return;
+  }
+
+
+  document.getElementById("accountContent").style.display = "block";
+
+  document.getElementById("userEmail").textContent =
+    user.email;
+
+}
+
+
+loadAccount();
+
+
+document.getElementById("logoutButton").addEventListener(
+  "click",
+  async function() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href = "login.html";
+
+  }
+);
+
+</script>
+
+</body>
+</html>
