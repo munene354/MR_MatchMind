@@ -897,21 +897,18 @@ const supabaseAuth = window.supabase.createClient(
 );
 
 async function updateNavigation() {
-
   const { data: { session } } =
     await supabaseAuth.auth.getSession();
 
-  const loginLink =
-    document.getElementById("loginLink");
-
-  const accountLink =
-    document.getElementById("accountLink");
+  const loginLink = document.getElementById("loginLink");
+  const accountLink = document.getElementById("accountLink");
 
   if (!loginLink || !accountLink) return;
 
   if (session) {
     loginLink.style.display = "none";
     accountLink.style.display = "inline-block";
+    accountLink.textContent = "Account";
   } else {
     loginLink.style.display = "inline-block";
     accountLink.style.display = "none";
