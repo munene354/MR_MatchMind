@@ -918,5 +918,33 @@ async function updateNavigation() {
 
 updateNavigation();
 </script>
+  <script>
+const FOOTBALL_API_URL =
+  "https://vvotpujbkaigszgocspy.supabase.co/functions/v1/football-api";
+
+async function loadRealFixtures() {
+  try {
+    const response = await fetch(FOOTBALL_API_URL);
+
+    if (!response.ok) {
+      throw new Error("Football API request failed");
+    }
+
+    const data = await response.json();
+
+    console.log("M.R MatchMind football data:", data);
+
+    // Temporary test:
+    if (data.response && data.response.length > 0) {
+      console.log("Real fixtures received:", data.response);
+    }
+
+  } catch (error) {
+    console.error("MatchMind API error:", error);
+  }
+}
+
+loadRealFixtures();
+  </script>
 </body>
 </html>
