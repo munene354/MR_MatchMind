@@ -579,7 +579,12 @@ footer {
 
 </section>
 
-<section class="section" id="free">
+<div id="realFixtures" style="margin:20px 0;">
+  <h2>⚽ Today's Fixtures</h2>
+  <p id="fixtureStatus">Loading real fixtures...</p>
+  <div id="fixtureList"></div>
+</div>
+  <section class="section" id="free">
 
   <div class="section-heading">
 
@@ -920,27 +925,55 @@ updateNavigation();
 </script>
   <script>
 const FOOTBALL_API_URL =
-  "https://vvotpujbkaigszgocspy.supabase.co/functions/v1/football-api";
+  "https://9vvotpujbkaigszgocspy.supabase.co/functions/v1/football-api";
 
 async function loadRealFixtures() {
+  const status = document.getElementById("fixtureStatus");
+  const list = document.getElementById("fixtureList");
+
   try {
+    status.textContent = "Loading fixtures...";
+
     const response = await fetch(FOOTBALL_API_URL);
 
     if (!response.ok) {
-      throw new Error("Football API request failed");
+      throw new Error("Request failed: " + response.status);
     }
 
     const data = await response.json();
 
-    console.log("M.R MatchMind football data:", data);
-
-    // Temporary test:
-    if (data.response && data.response.length > 0) {
-      console.log("Real fixtures received:", data.response);
+    if (!Array.isArray(data.response) || data.response.length === 0) {
+      status.textContent = "No fixtures available for today.";
+      return;
     }
 
+    status.textContent = "Today's real fixtures ⚽";
+
+    list.replaceChildren();
+
+    data.response.slice(0, 10).forEach(match => {
+      const card = document.createElement("div");
+      card.style.cssText =
+        "padding:15px;margin:10px 0;border:1px solid #444;border-radius:10px;";
+
+      const teams = document.createElement("strong");
+      teams.textContent =
+        `${match.teams.home.name} vs ${match.teams.away.name}`;
+
+      const league = document.createElement("p");
+      league.textContent = match.league.name;
+
+      const time = document.createElement("p");
+      time.textContent =
+        new Date(match.fixture.date).toLocaleString();
+
+      card.append(teams, league, time);
+      list.appendChild(card);
+    });
+
   } catch (error) {
-    console.error("MatchMind API error:", error);
+    status.textContent = "Fixtures couldn't load. Please try again.";
+    console.error("MatchMind fixtures:", error);
   }
 }
 
